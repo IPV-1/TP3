@@ -90,5 +90,5 @@ local.properties
 arkanoid/src/main/security/keystore.jks
 
 # intelliJ IDEA
-*.iml
-.idea/
+**/*.iml
+**/*.idea/
