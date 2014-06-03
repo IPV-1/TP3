@@ -29,8 +29,9 @@ public class PacmanGame extends Game{
 	}
 
 	private void initializeConfigResources() {
-		//loadSprites();
+		getResources().loadSprite("map");
 		setDisplaySize(new Dimension(getResources().getInt("screenWidth"), getResources().getInt("screenHeight")));
+
 	}
 
 	@Override

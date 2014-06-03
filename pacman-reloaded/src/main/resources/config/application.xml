@@ -3,4 +3,5 @@
 <properties>
     <entry key="screenWidth">1200</entry>
     <entry key="screenHeight">600</entry>
+    <entry key="map">map.png</entry>
 </properties>
