@@ -4,6 +4,7 @@ java_import Java::resource::Resource
 java_import Java::javax.imageio.ImageIO
 java_import Java::java.awt.image.BufferedImage
 java_import Java::com.uqbar.vainilla.appearances.Sprite
+java_import Java::java.awt.Color
 
 class ColorParser
   attr_accessor :walking_matrix, :background
@@ -42,7 +43,7 @@ class ColorParser
     (0...width).each do |j|
       pixel = image.getRGB(j, i)
       g_image = image_for(pixel, image)
-      graphics.draw_image(g_image, nil, i, j)
+      graphics.draw_image(g_image, nil, j, i)
     end
   end
 
@@ -69,12 +70,17 @@ class ColorParser
   def image_for(color, image)
     new_image = BufferedImage.new 29, 15, BufferedImage::TYPE_INT_ARGB
     graphics = new_image.createGraphics
-    graphics.fillRect((int) component.getX(), (int) component.getY(), this.width, this.height);
+    graphics.color = (color == -324853 ? Color::RED : Color::BLUE)
+    graphics.fill_rect( 0, 0, 29, 15)
+    graphics.dispose
+    new_image
   end
 end
 
 
 c = ColorParser.new
-c.parse 'img/map.png'
+a = c.parse 'img/map.png'
 puts c.walking_matrix.size
-puts [[1,2][3,4]]
+outputfile = java.io.File.new('image.png')
+ImageIO.write(a.image, "png", outputfile)
+puts a.image
