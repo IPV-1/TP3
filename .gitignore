@@ -85,7 +85,8 @@ local.properties
 
 # PDT-specific
 .buildpath
-
+**/.jbundler
+**/.bundle
 arkanoid/src/main/security/keystore.jks
 
 # intelliJ IDEA
