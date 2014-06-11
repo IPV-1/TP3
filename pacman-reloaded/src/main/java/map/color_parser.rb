@@ -9,26 +9,36 @@ java_import Java::java.awt.Color
 class ColorParser
   attr_accessor :walking_matrix, :background
 
+  #Remove this!
+  BLOCK_SIZE = 30
+
   def initialize
     self.walking_matrix = []
   end
 
   def parse(file)
+    create_walking_matrix(file)
+    create_background(file)
+  end
+
+  def create_background(file)
+    read_image(file) do |image,width, height|
+      new_image = BufferedImage.new width * BLOCK_SIZE, height * BLOCK_SIZE, BufferedImage::TYPE_INT_ARGB
+      graphics = new_image.createGraphics
+      (0...height).each do |row_number|
+        create_image_row(row_number, width, image, graphics)
+      end
+      graphics.dispose
+      Sprite.new new_image
+    end
+  end
+
+  def create_walking_matrix(file)
     read_image(file) do |image,w, h|
       (0...h).each do |i|
         create_row(i, w, image)
       end
     end
-    read_image(file) do |image,w, h|
-      new_image = BufferedImage.new w, h, BufferedImage::TYPE_INT_ARGB
-      graphics = new_image.createGraphics
-      (0...h).each do |i|
-        create_image_row(i, w, image, graphics)
-      end
-      graphics.dispose
-      Sprite.new new_image
-    end
-
   end
 
   def read_image(file)
@@ -39,20 +49,20 @@ class ColorParser
     yield image, w, h
   end
 
-  def create_image_row(i, width, image, graphics)
-    (0...width).each do |j|
-      pixel = image.getRGB(j, i)
+  private
+
+  def create_image_row(row_number, width, image, graphics)
+    (0...width).each do |column_number|
+      pixel = image.getRGB(column_number, row_number)
       g_image = image_for(pixel, image)
-      graphics.draw_image(g_image, nil, j, i)
+      graphics.draw_image(g_image, nil, column_number* BLOCK_SIZE, row_number * BLOCK_SIZE)
     end
   end
 
   def create_row(i, width, image)
     row = []
     (0...width).each do |j|
-      puts "x,y: #{j}, #{i}"
       pixel = image.getRGB(j, i)
-      puts "color: #{pixel}"
       row << boolean_for(pixel)
     end
     add_row row
@@ -68,10 +78,10 @@ class ColorParser
   end
 
   def image_for(color, image)
-    new_image = BufferedImage.new 29, 15, BufferedImage::TYPE_INT_ARGB
+    new_image = BufferedImage.new BLOCK_SIZE, BLOCK_SIZE, BufferedImage::TYPE_INT_ARGB
     graphics = new_image.createGraphics
     graphics.color = (color == -324853 ? Color::RED : Color::BLUE)
-    graphics.fill_rect( 0, 0, 29, 15)
+    graphics.fill_rect( 0, 0, BLOCK_SIZE, BLOCK_SIZE)
     graphics.dispose
     new_image
   end
