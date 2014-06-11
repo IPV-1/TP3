@@ -10,6 +10,12 @@
     <name>pacman-reloaded</name>
     <url>.</url>
     <description>Pac-man reloaded</description>
+    <repositories>
+        <repository>
+            <id>rubygems-release</id>
+            <url>http://rubygems-proxy.torquebox.org/releases</url>
+        </repository>
+    </repositories>
     <build>
         <plugins>
 
@@ -259,6 +265,12 @@
             <artifactId>junit</artifactId>
             <version>4.4</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>rubygems</groupId>
+            <artifactId>compass</artifactId>
+            <version>0.12.2</version>
+            <type>gem</type>
         </dependency>
     </dependencies>
 </project>
