@@ -82,7 +82,7 @@ class ColorParser
 
 
   def boolean_for(color)
-    color == -324853
+    color != -324853
   end
 
   def image_for(color, image)

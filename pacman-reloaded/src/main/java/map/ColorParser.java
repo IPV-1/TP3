@@ -97,7 +97,7 @@ public class ColorParser extends RubyObject  {
             "\n" +
             "\n" +
             "  def boolean_for(color)\n" +
-            "    color == -324853\n" +
+            "    color != -324853\n" +
             "  end\n" +
             "\n" +
             "  def image_for(color, image)\n" +
@@ -109,7 +109,7 @@ public class ColorParser extends RubyObject  {
             "    new_image\n" +
             "  end\n" +
             "end").toString();
-        __ruby__.executeScript(source, "color_parser.rb");
+        __ruby__.executeScript(source, "pacman-reloaded/src/main/java/map/color_parser.rb");
         RubyClass metaclass = __ruby__.getClass("ColorParser");
         if (metaclass == null) throw new NoClassDefFoundError("Could not load Ruby class: ColorParser");
         metaclass.setRubyStaticAllocator(ColorParser.class);
