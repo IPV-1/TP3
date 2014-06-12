@@ -7,7 +7,7 @@ import pacman.PacmanGame;
 /**
  * Common scene methods.
  */
-public abstract class AbstractPacmanScene extends GameScene {
+public class AbstractPacmanScene extends GameScene {
 
 	@Override
 	public PacmanGame getGame(){

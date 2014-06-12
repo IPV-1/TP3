@@ -18,20 +18,11 @@ public class PacmanGame extends Game{
 		setConfig(new Config(configFile));
 		setResources(new ConfiguredResources(getConfig()));
 		initializeConfigResources();
-		setCurrentScene();
-	}
-
-	/**
-	 * Set first scene here!
-	 */
-	private void setCurrentScene() {
-
 	}
 
 	private void initializeConfigResources() {
 		getResources().loadSprite("map");
 		setDisplaySize(new Dimension(getResources().getInt("screenWidth"), getResources().getInt("screenHeight")));
-
 	}
 
 	@Override
