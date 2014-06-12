@@ -267,16 +267,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jruby-maven-plugin</artifactId>
-            <version>1.0-beta-4</version>
-        </dependency>
-
-        <dependency>
             <groupId>rubygems</groupId>
             <artifactId>compass</artifactId>
             <version>0.12.2</version>
             <type>gem</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jruby</groupId>
+            <artifactId>jruby-core</artifactId>
+            <version>1.7.12</version>
         </dependency>
     </dependencies>
 </project>

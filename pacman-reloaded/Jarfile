@@ -1,0 +1,2 @@
+jar 'junit:junit', '4.4'
+jar 'org.jruby:jruby-core', '1.7.12'
