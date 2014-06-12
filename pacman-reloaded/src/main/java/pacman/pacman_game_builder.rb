@@ -4,10 +4,10 @@ java_import Java::pacman.PacmanGame
 
 
 class PacmanGameBuilder
-  attr_accessor :config_file, :scene
+  attr_accessor :config_obj, :scene
 
-  def with_config(config_file)
-    self.config_file = config_file
+  def with_config(config_obj)
+    self.config_obj = config_obj
     self
   end
 
@@ -17,7 +17,7 @@ class PacmanGameBuilder
   end
 
   def build
-    game = PacmanGame.new config_file
+    game = PacmanGame.new config_obj
     unless scene.nil?
       game.set_current_scene scene
     end

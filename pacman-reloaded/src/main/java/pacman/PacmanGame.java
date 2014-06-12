@@ -13,9 +13,9 @@ public class PacmanGame extends Game{
 	private ConfiguredResources resources;
 	private Dimension displaySize;
 
-	public PacmanGame(String configFile){
+	public PacmanGame(Config config){
 		super();
-		setConfig(new Config(configFile));
+		setConfig(config);
 		setResources(new ConfiguredResources(getConfig()));
 		initializeConfigResources();
 	}
