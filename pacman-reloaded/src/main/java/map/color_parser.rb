@@ -1,6 +1,6 @@
 require 'java'
 
-java_import Java::resource::Resource
+java_import Java::resource.Resource
 java_import Java::javax.imageio.ImageIO
 java_import Java::java.awt.image.BufferedImage
 java_import Java::com.uqbar.vainilla.appearances.Sprite
@@ -21,6 +21,14 @@ class ColorParser
     create_background(file)
   end
 
+  def get_walking_matrix
+    self.walking_matrix
+  end
+
+  def get_background
+    self.background
+  end
+
   def create_background(file)
     read_image(file) do |image,width, height|
       new_image = BufferedImage.new width * BLOCK_SIZE, height * BLOCK_SIZE, BufferedImage::TYPE_INT_ARGB
@@ -29,7 +37,7 @@ class ColorParser
         create_image_row(row_number, width, image, graphics)
       end
       graphics.dispose
-      Sprite.new new_image
+      self.background = Sprite.new new_image
     end
   end
 
@@ -86,11 +94,3 @@ class ColorParser
     new_image
   end
 end
-
-
-c = ColorParser.new
-a = c.parse 'img/map.png'
-puts c.walking_matrix.size
-outputfile = java.io.File.new('image.png')
-ImageIO.write(a.image, "png", outputfile)
-puts a.image
