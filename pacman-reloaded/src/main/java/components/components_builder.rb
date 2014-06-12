@@ -7,7 +7,7 @@ class ComponentsBuilder
     self.config = config
   end
 
-  def create_pacman(sprite, blockX, blockY)
-    Pacman.new sprite, blockX * self.config.get_int('blockSize'), blockY * self.config.get_int('blockSize')
+  def create_pacman(sprite, block_x, block_y)
+    Pacman.new sprite, block_x * self.config.get_int('blockSize'), block_y * self.config.get_int('blockSize')
   end
 end

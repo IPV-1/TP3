@@ -7,12 +7,10 @@ java_import Java::com.uqbar.vainilla.appearances.Sprite
 java_import Java::java.awt.Color
 
 class ColorParser
-  attr_accessor :walking_matrix, :background
+  attr_accessor :walking_matrix, :background, :block_size
 
-  #Remove this!
-  BLOCK_SIZE = 30
-
-  def initialize
+  def initialize(block_size)
+    self.block_size = block_size
     self.walking_matrix = []
   end
 
@@ -31,7 +29,7 @@ class ColorParser
 
   def create_background(file)
     read_image(file) do |image,width, height|
-      new_image = BufferedImage.new width * BLOCK_SIZE, height * BLOCK_SIZE, BufferedImage::TYPE_INT_ARGB
+      new_image = BufferedImage.new width * block_size, height * block_size, BufferedImage::TYPE_INT_ARGB
       graphics = new_image.createGraphics
       (0...height).each do |row_number|
         create_image_row(row_number, width, image, graphics)
@@ -63,7 +61,7 @@ class ColorParser
     (0...width).each do |column_number|
       pixel = image.getRGB(column_number, row_number)
       g_image = image_for(pixel, image)
-      graphics.draw_image(g_image, nil, column_number* BLOCK_SIZE, row_number * BLOCK_SIZE)
+      graphics.draw_image(g_image, nil, column_number* block_size, row_number * block_size)
     end
   end
 
@@ -86,10 +84,10 @@ class ColorParser
   end
 
   def image_for(color, image)
-    new_image = BufferedImage.new BLOCK_SIZE, BLOCK_SIZE, BufferedImage::TYPE_INT_ARGB
+    new_image = BufferedImage.new block_size, block_size, BufferedImage::TYPE_INT_ARGB
     graphics = new_image.createGraphics
     graphics.color = (color == -324853 ? Color::RED : Color::BLUE)
-    graphics.fill_rect( 0, 0, BLOCK_SIZE, BLOCK_SIZE)
+    graphics.fill_rect( 0, 0, block_size, block_size)
     graphics.dispose
     new_image
   end

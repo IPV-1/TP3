@@ -5,14 +5,15 @@ require '../components/basic_pacman_component'
 java_import Java::scenes.AbstractPacmanScene
 
 class SceneBuilder
-  attr_accessor :background, :walkable_matrix, :components
+  attr_accessor :background, :walkable_matrix, :components, :config
 
-  def initialize
+  def initialize(config)
+    self.config =config
     self.components = []
   end
 
   def with_background(image)
-    sprite = ColorParser.new.parse image
+    sprite = ColorParser.new(self.config.get_int('blockSize')).parse image
     self.background = BasicPacmanComponent.new sprite, 0, 0
     self
   end
@@ -23,7 +24,7 @@ class SceneBuilder
   end
 
   def with_walkable_matrix(image)
-    parser = ColorParser.new
+    parser = ColorParser.new(self.config.get_int('blockSize'))
     parser.parse(image)
     self.walkable_matrix = parser.get_walking_matrix
     self
