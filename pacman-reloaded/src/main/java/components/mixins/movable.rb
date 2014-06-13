@@ -11,11 +11,11 @@ module Movable
   end
 
   def move(delta_state)
-    self.x = move_position x, uVector.x, speed_factor(delta_state)
-    self.y = move_position y, uVector.y, speed_factor(delta_state)
+    self.x = calculate_position x, uVector.x, speed_factor(delta_state)
+    self.y = calculate_position y, uVector.y, speed_factor(delta_state)
   end
 
-  def move_position(position, uVectorProportion, speedFactor)
+  def calculate_position(position, uVectorProportion, speedFactor)
     position + uVectorProportion * speedFactor
   end
 
