@@ -1,18 +1,21 @@
 require 'java'
 java_import Java::com.uqbar.vainilla.GameScene
 java_import Java::extensions.shapes.Circle
-require '../pacman/pacman_game'
+require '../components/pacman'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :block_size
+  attr_accessor :walkable_matrix, :block_size, :pacman
 
   def onSetAsCurrent
     super
-    image = Resource.get_image 'pacman-min.png'
+    create_pacman
+  end
+
+  def create_pacman
+    image = Resource.get_image game.config['pacmanImg']
     shape = Circle.new image.width / 2, 0, 0
-    pacman = Pacman.new(shape, image, 0 * block_size, 1 * block_size)
-    pacman.initialize_vector 1, 0, 200
+    self.pacman = Pacman.new(shape, image, 0 * block_size, 1 * block_size, 1, 0, 200)
     add_component pacman
   end
 

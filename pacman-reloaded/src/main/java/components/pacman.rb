@@ -7,6 +7,11 @@ class Pacman < BasicPacmanComponent
   include Movable
   include Handleable
 
+  def initialize(shape, appearance, x, y, x_vector, y_vector, speed)
+    super shape, appearance, x, y
+    initialize_vector x_vector, y_vector, speed
+  end
+
   def update(delta_state)
     update_vector delta_state, uVector
     if can_move? delta_state
@@ -23,11 +28,13 @@ class Pacman < BasicPacmanComponent
   end
 
   java_signature 'double getX()'
+
   def getX
     super
   end
 
   java_signature 'double getY()'
+
   def getY
     super
   end

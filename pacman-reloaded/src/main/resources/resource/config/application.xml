@@ -5,4 +5,5 @@
     <entry key="screenHeight">450</entry>
     <entry key="map">map.png</entry>
     <entry key="blockSize">30</entry>
+    <entry key="pacmanImg">pacman-min.png</entry>
 </properties>
