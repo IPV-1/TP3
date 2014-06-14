@@ -2,6 +2,7 @@ require 'java'
 require '../map/color_parser'
 require '../components/basic_pacman_component'
 
+java_import Java::com.uqbar.vainilla.GameComponent
 require_relative './abstract_pacman_scene'
 
 class SceneBuilder
@@ -14,7 +15,7 @@ class SceneBuilder
 
   def with_background(image)
     sprite = ColorParser.new(self.config.get_int('blockSize')).parse image
-    self.background = BasicPacmanComponent.new sprite, 0, 0
+    self.background = GameComponent.new sprite, 0, 0
     self
   end
 

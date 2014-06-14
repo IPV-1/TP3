@@ -6,8 +6,7 @@ require_relative './mixins/handleable'
 class Pacman < BasicPacmanComponent
   include Movable
   include Handleable
-  include Shapeable
-  attr_accessor :shape, :block_size
+  attr_accessor :block_size
 
   def update(delta_state)
     update_vector delta_state, uVector
