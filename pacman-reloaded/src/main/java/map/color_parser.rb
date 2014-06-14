@@ -19,14 +19,6 @@ class ColorParser
     create_background(file)
   end
 
-  def get_walking_matrix
-    self.walking_matrix
-  end
-
-  def get_background
-    self.background
-  end
-
   def create_background(file)
     read_image(file) do |image,width, height|
       new_image = BufferedImage.new width * block_size, height * block_size, BufferedImage::TYPE_INT_ARGB

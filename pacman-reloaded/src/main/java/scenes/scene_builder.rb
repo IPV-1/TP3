@@ -28,7 +28,7 @@ class SceneBuilder
   def with_walkable_matrix(image)
     parser = ColorParser.new(block_size)
     parser.parse(image)
-    self.walkable_matrix = parser.get_walking_matrix
+    self.walkable_matrix = parser.walking_matrix
     self
   end
 
