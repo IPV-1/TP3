@@ -17,6 +17,6 @@ pacman.initialize_vector 1, 0, 200
 
 scene = SceneBuilder.new(c).with_background('img/map.png').with_walkable_matrix('img/map.png').with_block_size(block_size)
 .with_component(pacman).build
-game = PacmanGameBuilder.new.with_config(c).with_current_scene(scene).build
+game = PacmanGameBuilder.new(c).with_current_scene(scene).build
 
 DesktopGameLauncher.new(game).launch
