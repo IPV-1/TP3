@@ -14,7 +14,7 @@ class PacmanScene < GameScene
 
   def create_pacman
     image = game.resources['pacmanImg']
-    shape = Circle.new (image.width / 2), 0, 0
+    shape = Circle.new ((game.block_size - 1) / 2), 0, 0
     self.pacman = Pacman.new(shape, image, 0 * block_size, 1 * block_size, 1, 0, 200)
     add_component pacman
   end
