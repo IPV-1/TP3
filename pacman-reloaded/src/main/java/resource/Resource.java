@@ -23,6 +23,10 @@ public class Resource {
     protected static final String IMG_PACKAGE = "img";
     protected static final String SOUND_PACKAGE = "sound";
 
+    public static InputStream getResourceAsStream(String file){
+        return Resource.class.getResourceAsStream(file);
+    }
+
     /**
      * Returns the image in path "PROJECT_ROOT/src/main/resources/resource/imageFileName"
      * @param imageFileName String

@@ -20,7 +20,7 @@ class AppConfig
 
   def load_file_configuration(file)
     begin
-      config_file_stream = Resource.java_class.resource_as_stream(file)
+      config_file_stream = Resource.getResourceAsStream(file)
       p = Properties.new
       p.loadFromXML config_file_stream
       config_file_stream.close

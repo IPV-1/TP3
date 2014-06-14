@@ -48,7 +48,7 @@ class ColorParser
   end
 
   def read_image(file)
-    stream = Resource.java_class.resource file
+    stream = Resource.getResourceAsStream file
     image = ImageIO.read stream
     w = image.width
     h = image.height
