@@ -3,7 +3,7 @@ java_import Java::com.uqbar.vainilla.GameScene
 require '../pacman/pacman_game'
 
 
-class AbstractPacmanScene < GameScene
+class PacmanScene < GameScene
 
   attr_accessor :walkable_matrix, :block_size
 

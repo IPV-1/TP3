@@ -3,7 +3,7 @@ require '../map/color_parser'
 require '../components/basic_pacman_component'
 
 java_import Java::com.uqbar.vainilla.GameComponent
-require_relative './abstract_pacman_scene'
+require_relative './pacman_scene'
 
 class SceneBuilder
   attr_accessor :background, :walkable_matrix, :components, :config, :block_size
@@ -37,7 +37,7 @@ class SceneBuilder
   end
 
   def build
-    scene = AbstractPacmanScene.new
+    scene = PacmanScene.new
     unless background.nil?
       scene.add_component background
     end
