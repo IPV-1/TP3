@@ -9,12 +9,13 @@ class SceneBuilder
   attr_accessor :background, :walkable_matrix, :components, :config, :block_size
 
   def initialize(config)
-    self.config =config
+    self.config = config
     self.components = []
+    self.block_size = config.get_int('blockSize')
   end
 
   def with_background(image)
-    sprite = ColorParser.new(self.config.get_int('blockSize')).parse image
+    sprite = ColorParser.new(block_size).parse image
     self.background = GameComponent.new sprite, 0, 0
     self
   end
@@ -25,14 +26,9 @@ class SceneBuilder
   end
 
   def with_walkable_matrix(image)
-    parser = ColorParser.new(self.config.get_int('blockSize'))
+    parser = ColorParser.new(block_size)
     parser.parse(image)
     self.walkable_matrix = parser.get_walking_matrix
-    self
-  end
-
-  def with_block_size(block_size)
-    self.block_size = block_size
     self
   end
 
