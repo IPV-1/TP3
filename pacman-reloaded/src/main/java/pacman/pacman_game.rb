@@ -7,6 +7,7 @@ java_import Java::com.uqbar.vainilla.Game
 
 java_import java.awt.Dimension
 
+#Please do not create instances of this class directly, use PacmanGameBuilder for doing that
 class PacmanGame < Game
   attr_accessor :config, :resources, :display_size
 
