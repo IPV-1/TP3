@@ -2,7 +2,7 @@ require 'java'
 require '../map/color_parser'
 require '../components/basic_pacman_component'
 
-java_import Java::scenes.AbstractPacmanScene
+require_relative './abstract_pacman_scene'
 
 class SceneBuilder
   attr_accessor :background, :walkable_matrix, :components, :config
