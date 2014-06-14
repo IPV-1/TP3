@@ -40,9 +40,7 @@ class SceneBuilder
     unless walkable_matrix.nil?
       scene.walkable_matrix = walkable_matrix
     end
-    scene.block_size = block_size
     scene.add_components components
-
     scene
   end
 end

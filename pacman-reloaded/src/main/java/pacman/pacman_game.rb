@@ -17,6 +17,10 @@ class PacmanGame < Game
     initialize_config_resources
   end
 
+  def block_size
+    self.config.get_int('blockSize')
+  end
+
   def initialize_config_resources
     resources.load_sprite('map')
     self.display_size = Dimension.new resources.get_int('screenWidth'), resources.get_int('screenHeight')

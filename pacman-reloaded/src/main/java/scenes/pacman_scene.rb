@@ -5,7 +5,7 @@ require '../components/pacman'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :block_size, :pacman
+  attr_accessor :walkable_matrix, :pacman
 
   def onSetAsCurrent
     super
@@ -14,7 +14,7 @@ class PacmanScene < GameScene
 
   def create_pacman
     image = Resource.get_image game.config['pacmanImg']
-    shape = Circle.new image.width / 2, 0, 0
+    shape = Circle.new (image.width / 2), 0, 0
     self.pacman = Pacman.new(shape, image, 0 * block_size, 1 * block_size, 1, 0, 200)
     add_component pacman
   end
@@ -33,6 +33,10 @@ class PacmanScene < GameScene
 
   def to_b(x)
     (x / block_size).to_i
+  end
+
+  def block_size
+    game.block_size
   end
 
 end
