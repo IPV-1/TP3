@@ -6,7 +6,6 @@ require_relative './mixins/handleable'
 class Pacman < BasicPacmanComponent
   include Movable
   include Handleable
-  attr_accessor :block_size
 
   def update(delta_state)
     update_vector delta_state, uVector
@@ -20,18 +19,7 @@ class Pacman < BasicPacmanComponent
     x, y = shape.x, shape.y
     new_x = calculate_position x, uVector.x, speed_factor(delta_state)
     new_y = calculate_position y, uVector.y, speed_factor(delta_state)
-    can_occupy?(new_x, new_y)
-  end
-
-  def can_occupy?(x, y)
-    scene.can_walk to_b(x), to_b(y) and
-        scene.can_walk to_b(x + shape.diameter), to_b(y) and
-        scene.can_walk to_b(x), to_b(y + shape.diameter) and
-        scene.can_walk to_b(x + shape.diameter), to_b(y + shape.diameter)
-
-  end
-  def to_b(x)
-    (x / block_size).to_i
+    scene.can_occupy?(new_x, new_y, shape)
   end
 
   java_signature 'double getX()'

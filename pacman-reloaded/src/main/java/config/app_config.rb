@@ -19,16 +19,11 @@ class AppConfig
   end
 
   def load_file_configuration(file)
-    begin
       config_file_stream = Resource.getResourceAsStream(file)
       p = Properties.new
       p.loadFromXML config_file_stream
       config_file_stream.close
       self.properties = p
-    rescue IOException => e
-      java.lang.RuntimeException.new e
-    end
-
   end
 
 end

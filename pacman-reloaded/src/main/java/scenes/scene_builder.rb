@@ -6,7 +6,7 @@ java_import Java::com.uqbar.vainilla.GameComponent
 require_relative './abstract_pacman_scene'
 
 class SceneBuilder
-  attr_accessor :background, :walkable_matrix, :components, :config
+  attr_accessor :background, :walkable_matrix, :components, :config, :block_size
 
   def initialize(config)
     self.config =config
@@ -31,6 +31,11 @@ class SceneBuilder
     self
   end
 
+  def with_block_size(block_size)
+    self.block_size = block_size
+    self
+  end
+
   def build
     scene = AbstractPacmanScene.new
     unless background.nil?
@@ -39,6 +44,7 @@ class SceneBuilder
     unless walkable_matrix.nil?
       scene.walkable_matrix = walkable_matrix
     end
+    scene.block_size = block_size
     scene.add_components components
 
     scene
