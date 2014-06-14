@@ -1,5 +1,5 @@
 require 'java'
-java_import Java::config.Config
+require '../config/app_config'
 require '../pacman/pacman_game_builder'
 require '../pacman/pacman_game'
 require '../scenes/scene_builder'
@@ -8,7 +8,7 @@ require '../components/components_builder'
 java_import com.uqbar.vainilla.DesktopGameLauncher
 java_import Java::extensions.shapes.Circle
 
-c = Config.new 'application.xml'
+c = AppConfig.new 'config/application.xml'
 image = Resource.get_image 'pacman-min.png'
 pacman = ComponentsBuilder.new(c).create_pacman(image, 0, 1)
 pacman.initialize_vector 1, 0, 200

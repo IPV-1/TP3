@@ -1,6 +1,9 @@
+require 'java'
+
+require '../config/app_config'
+require '../config/configured_resources'
+
 java_import Java::com.uqbar.vainilla.Game
-java_import Java::config.Config
-java_import Java::config.ConfiguredResources
 
 java_import java.awt.Dimension
 
@@ -14,8 +17,8 @@ class PacmanGame < Game
   end
 
   def  initialize_config_resources
-    resources.loadSprite('map')
-    self.display_size = Dimension.new resources.getInt('screenWidth'), resources.getInt('screenHeight')
+    resources.load_sprite('map')
+    self.display_size = Dimension.new resources.get_int('screenWidth'), resources.get_int('screenHeight')
   end
 
   java_signature 'void initializeResources()'
