@@ -1,16 +1,8 @@
 require 'java'
 
-java_import Java::extensions.shapes.Shapeable
-require_relative './mixins/movable'
 require_relative './mixins/handleable'
 class Pacman < BasicPacmanComponent
-  include Movable
   include Handleable
-
-  def initialize(shape, appearance, x, y, x_vector, y_vector, speed)
-    super shape, appearance, x, y
-    initialize_vector x_vector, y_vector, speed
-  end
 
   def update(delta_state)
     update_vector delta_state, uVector
