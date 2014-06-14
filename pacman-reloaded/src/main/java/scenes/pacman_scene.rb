@@ -5,7 +5,6 @@ require '../pacman/pacman_game'
 
 
 class PacmanScene < GameScene
-
   attr_accessor :walkable_matrix, :block_size
 
   def onSetAsCurrent
