@@ -22,10 +22,6 @@ module ColorParser
         -277237 => Color::YELLOW
     }
 
-    def parse(file)
-      create_background file
-    end
-
     def create_background(file)
       read_image(file) do |image, width, height|
         new_image = BufferedImage.new width * block_size, height * block_size, BufferedImage::TYPE_INT_ARGB
