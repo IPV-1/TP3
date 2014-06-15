@@ -9,6 +9,17 @@ java_import Java::java.awt.Color
 class ColorParser
   attr_accessor :walking_matrix, :background, :block_size
 
+  COLOR_HASH = {
+      -324853 => Color::RED,
+      -1 => Color::BLUE,
+      -301813 => Color::ORANGE,
+      -16046085 => Color::LIGHT_GRAY,
+      -14550261 => Color::BLACK,
+      -787701 => Color::PINK,
+      -324638 => Color::GREEN,
+      -277237 => Color::YELLOW
+  }
+
   def initialize(block_size)
     self.block_size = block_size
     self.walking_matrix = []
@@ -78,7 +89,12 @@ class ColorParser
   def image_for(color, image)
     new_image = BufferedImage.new block_size, block_size, BufferedImage::TYPE_INT_ARGB
     graphics = new_image.createGraphics
-    graphics.color = (color == -324853 ? Color::RED : Color::BLUE)
+    puts color
+    kolor = COLOR_HASH[color]
+    if kolor.blank?
+      raise "No color found for #{color}"
+    end
+    graphics.color = kolor
     graphics.fill_rect( 0, 0, block_size, block_size)
     graphics.dispose
     new_image
