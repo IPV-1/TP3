@@ -1,4 +1,5 @@
 require 'java'
+require 'active_support/all'
 
 require '../config/app_config'
 require '../pacman/pacman_game_builder'

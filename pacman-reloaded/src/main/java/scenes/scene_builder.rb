@@ -34,10 +34,10 @@ class SceneBuilder
 
   def build
     scene = PacmanScene.new
-    unless background.nil?
+    unless background.blank?
       scene.add_component background
     end
-    unless walkable_matrix.nil?
+    unless walkable_matrix.blank?
       scene.walkable_matrix = walkable_matrix
     end
     scene.add_components components
