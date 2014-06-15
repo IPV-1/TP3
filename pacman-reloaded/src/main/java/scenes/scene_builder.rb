@@ -6,7 +6,7 @@ java_import Java::com.uqbar.vainilla.GameComponent
 require_relative './pacman_scene'
 
 class SceneBuilder
-  attr_accessor :background, :walkable_matrix, :components, :config, :block_size
+  attr_accessor :background, :walkable_matrix, :components, :config, :block_size, :pacman
 
   def initialize(config)
     self.config = config
@@ -22,6 +22,16 @@ class SceneBuilder
 
   def with_component(component)
     self.components << component
+    self
+  end
+
+  def with_pacman(image, pacman_image)
+    parser = ColorParser::Parser.new(block_size)
+    parser.parse(image)
+    position = parser.pacman_position
+    shape = Circle.new ((block_size - 1) / 2), 0, 0
+    self.pacman = Pacman.new(shape, pacman_image, position[0] * block_size, position[1] * block_size, 1, 0, 200)
+    with_component pacman
     self
   end
 

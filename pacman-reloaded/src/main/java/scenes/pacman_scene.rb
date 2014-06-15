@@ -9,14 +9,6 @@ class PacmanScene < GameScene
 
   def onSetAsCurrent
     super
-    create_pacman
-  end
-
-  def create_pacman
-    image = game.resources['pacmanImg']
-    shape = Circle.new ((game.block_size - 1) / 2), 0, 0
-    self.pacman = Pacman.new(shape, image, 0 * block_size, 1 * block_size, 1, 0, 200)
-    add_component pacman
   end
 
   def can_walk(x, y)

@@ -2,6 +2,7 @@ require 'java'
 
 require_relative './background_parser'
 require_relative './walking_matrix_parser'
+require_relative './pacman_loader'
 
 java_import Java::resource.Resource
 java_import Java::javax.imageio.ImageIO
@@ -13,6 +14,7 @@ module ColorParser
   class Parser
     include ColorParser::BackgroundParser
     include ColorParser::WalkingMatrixParser
+    include ColorParser::PacmanLoader
     attr_accessor :block_size
 
     def initialize(block_size)
@@ -21,6 +23,7 @@ module ColorParser
     end
 
     def parse(file)
+      create_position file
       create_background file
       create_walking_matrix file
       self.background
@@ -32,6 +35,7 @@ module ColorParser
       w = image.width
       h = image.height
       yield image, w, h
+      stream.close
     end
 
   end
