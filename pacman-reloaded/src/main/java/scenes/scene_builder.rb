@@ -1,5 +1,5 @@
 require 'java'
-require '../map/color_parser'
+require '../map/color/color_parser'
 require '../components/basic_pacman_component'
 
 java_import Java::com.uqbar.vainilla.GameComponent
@@ -15,7 +15,7 @@ class SceneBuilder
   end
 
   def with_background(image)
-    sprite = ColorParser.new(block_size).parse image
+    sprite = ColorParser::Parser.new(block_size).parse image
     self.background = GameComponent.new sprite, 0, 0
     self
   end
@@ -26,7 +26,7 @@ class SceneBuilder
   end
 
   def with_walkable_matrix(image)
-    parser = ColorParser.new(block_size)
+    parser = ColorParser::Parser.new(block_size)
     parser.parse(image)
     self.walkable_matrix = parser.walking_matrix
     self
