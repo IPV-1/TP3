@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
+# Specify your gem's dependencies in pacman-reloaded.gemspec
 gem 'jbundler'
-
-gem 'activesupport'
+gemspec
