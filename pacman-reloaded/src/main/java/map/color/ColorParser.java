@@ -40,8 +40,47 @@ public class ColorParser {
 
     public void parse(String file){
         createBackground(file);
-        //create_walking_matrix file
+        create_walking_matrix(file);
         //self.background
+    }
+
+    private void create_walking_matrix(String file) {
+        InputStream stream = Resource.class.getResourceAsStream(file);
+        BufferedImage image;
+        try {
+            image = ImageIO.read(stream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        int i = image.getWidth();
+        int h = image.getHeight();
+
+        for (int j = 0; j <h; j++) {
+            create_row(j, i, image);
+        }
+        try {
+            stream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void create_row(int i,int  width,BufferedImage image){
+        List<Boolean>row = new ArrayList<Boolean>();
+        for (int j = 0; j < width; j++) {
+            int pixel = image.getRGB(j, i);
+            row.add(booleanFor(pixel));
+        }
+        addRow(row);
+    }
+
+    public void  addRow(List<Boolean>row){
+        getWalkingMatrix().add(row);
+    }
+
+    public boolean booleanFor(int color){
+     return color != -324853;
     }
 
     public void createBackground(String file) {
