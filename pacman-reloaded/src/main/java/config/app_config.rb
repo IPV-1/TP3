@@ -1,5 +1,5 @@
 require 'java'
-java_import Java::resource.Resource
+require '../resource/resource'
 java_import Java::java.util.Properties
 java_import Java::java.io.IOException
 
@@ -19,7 +19,7 @@ class AppConfig
   end
 
   def load_file_configuration(file)
-      config_file_stream = Resource.getResourceAsStream(file)
+      config_file_stream = Resource.resource_as_stream file
       p = Properties.new
       p.loadFromXML config_file_stream
       config_file_stream.close

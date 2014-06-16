@@ -4,7 +4,7 @@ require_relative './background_parser'
 require_relative './walking_matrix_parser'
 require_relative './pacman_loader'
 
-java_import Java::resource.Resource
+require_relative '../../resource/resource'
 java_import Java::javax.imageio.ImageIO
 java_import Java::java.awt.image.BufferedImage
 java_import Java::com.uqbar.vainilla.appearances.Sprite
@@ -30,7 +30,7 @@ module ColorParser
     end
 
     def read_image(file)
-      stream = Resource.getResourceAsStream file
+      stream = Resource.resource_as_stream file
       image = ImageIO.read stream
       w = image.width
       h = image.height

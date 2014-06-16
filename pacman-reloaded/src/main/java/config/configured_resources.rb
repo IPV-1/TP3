@@ -1,5 +1,5 @@
 java_import Java::com.uqbar.vainilla.appearances.Sprite
-java_import Java::resource.Resource
+require '../resource/resource'
 
 
 class ConfiguredResources
@@ -19,6 +19,6 @@ class ConfiguredResources
   end
 
   def load_sprite(key)
-    sprites[key] =  Resource.getImage self.config[key]
+    sprites[key] =  Resource.image self.config[key]
   end
 end
