@@ -2,8 +2,13 @@ package pacman;
 
 
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.appearances.Sprite;
+import components.PacmanComponent;
 import config.Config;
 import config.ConfiguredResources;
+import map.Map;
+import map.color.ColorParser;
+import scenes.PacmanScene;
 
 import java.awt.*;
 
@@ -25,7 +30,11 @@ public class PacmanGame extends Game{
 	 * Set first scene here!
 	 */
 	private void setCurrentScene() {
-
+        PacmanScene scene = new PacmanScene();
+        Sprite image = new Map(new ColorParser(getConfig().getInt("blockSize")), "img/map.png").getBackground();
+        PacmanComponent c = new PacmanComponent(image, 0, 0);
+        scene.addComponent( c);
+        setCurrentScene(scene);
 	}
 
 	private void initializeConfigResources() {
