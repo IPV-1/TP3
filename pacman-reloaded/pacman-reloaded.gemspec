@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Pacman::Reloaded::VERSION
   spec.authors       = ["lalo\n"]
   spec.email         = ["leandro.gz73@gmail.com"]
-  spec.summary       = %q{Pacman-like game with jruby}
-  spec.description   = %q{Pacman-like game with jruby}
+  spec.summary       = %q{PacmanComponent-like game with jruby}
+  spec.description   = %q{PacmanComponent-like game with jruby}
   spec.homepage      = ""
   spec.license       = "MIT"
 

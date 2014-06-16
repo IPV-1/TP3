@@ -1,10 +1,11 @@
+#! jruby
 require 'java'
 require 'active_support/all'
 
-require '../config/app_config'
-require '../pacman/pacman_game_builder'
-require '../pacman/pacman_game'
-require '../scenes/scene_builder'
+require_relative '../config/app_config'
+require_relative '../pacman/pacman_game_builder'
+require_relative '../pacman/pacman_game'
+require_relative '../scenes/scene_builder'
 
 java_import com.uqbar.vainilla.DesktopGameLauncher
 

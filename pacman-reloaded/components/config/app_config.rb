@@ -1,5 +1,5 @@
 require 'java'
-require '../resource/resource'
+require_relative '../resource/resource'
 java_import Java::java.util.Properties
 java_import Java::java.io.IOException
 

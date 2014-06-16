@@ -44,7 +44,7 @@ class PacmanGame < Game
 
   java_signature 'void getTile()'
   def getTitle
-    'Pacman reloaded'
+    'PacmanComponent reloaded'
   end
 
 end

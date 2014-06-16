@@ -1,7 +1,8 @@
 require 'java'
 java_import Java::com.uqbar.vainilla.GameScene
 java_import Java::extensions.shapes.Circle
-require '../components/pacman'
+
+require_relative '../components/pacman_component'
 
 
 class PacmanScene < GameScene

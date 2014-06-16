@@ -1,7 +1,7 @@
 require 'java'
 
 require_relative './mixins/handleable'
-class Pacman < BasicPacmanComponent
+class PacmanComponent < BasicPacmanComponent
   include Handleable
 
   def update(delta_state)
