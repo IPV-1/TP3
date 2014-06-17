@@ -66,7 +66,7 @@ public class PacmanComponent extends MovingGameComponent<AbstractPacmanScene> im
             vector.setX(1);
             vector.setY(0);
         }
-        if (delta_state.isKeyPressed(Key.RIGHT)) {
+        if (delta_state.isKeyPressed(Key.LEFT)) {
             vector.setX(-1);
             vector.setY(0);
         }

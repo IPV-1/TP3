@@ -3,12 +3,14 @@ package pacman;
 
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.appearances.Sprite;
+import components.Pacman;
 import components.PacmanComponent;
 import config.Config;
 import config.ConfiguredResources;
 import extensions.shapes.Circle;
 import map.Map;
 import map.color.ColorParser;
+import resource.Resource;
 import scenes.PacmanScene;
 
 import java.awt.*;
@@ -38,11 +40,16 @@ public class PacmanGame extends Game{
         PacmanComponent c = new PacmanComponent(image, 0, 0,1, 0, 0, new Circle(getConfig().getInt("blockSize"), 0, 0));
         scene.addComponent( c);
         scene.setList(map.getWalking_matrix());
+
+        Sprite pacman = getResources().getSprite("pacmanImg");
+        Pacman p = new Pacman(pacman, 1,0, 1, 0, 200, new Circle(getConfig().getInt("blockSize"), 0, 0));
+        scene.addComponent(p);
         setCurrentScene(scene);
 	}
 
 	private void initializeConfigResources() {
 		getResources().loadSprite("map");
+		getResources().loadSprite("pacmanImg");
 		setDisplaySize(new Dimension(getResources().getInt("screenWidth"), getResources().getInt("screenHeight")));
 
 	}
