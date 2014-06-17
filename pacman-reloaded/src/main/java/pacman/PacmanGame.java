@@ -38,7 +38,6 @@ public class PacmanGame extends Game {
         int bl = getConfig().getInt("blockSize");
         PacmanComponent c = new PacmanComponent(image, 0, 0, 1, 0, 0, new Circle(bl, 0, 0));
         scene.addComponent(c);
-        System.out.println(map.getWalking_matrix());
         scene.setList(map.getWalking_matrix());
 
         Sprite pacman = getResources().getSprite("pacmanImg");
