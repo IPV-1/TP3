@@ -6,6 +6,7 @@ import com.uqbar.vainilla.appearances.Sprite;
 import components.PacmanComponent;
 import config.Config;
 import config.ConfiguredResources;
+import extensions.shapes.Circle;
 import map.Map;
 import map.color.ColorParser;
 import scenes.PacmanScene;
@@ -31,9 +32,12 @@ public class PacmanGame extends Game{
 	 */
 	private void setCurrentScene() {
         PacmanScene scene = new PacmanScene();
-        Sprite image = new Map(new ColorParser(getConfig().getInt("blockSize")), "img/map.png").getBackground();
-        PacmanComponent c = new PacmanComponent(image, 0, 0);
+        Map map = new Map(new ColorParser(getConfig().getInt("blockSize")), "img/map.png");
+        Sprite image = map.getBackground();
+
+        PacmanComponent c = new PacmanComponent(image, 0, 0,1, 0, 0, new Circle(getConfig().getInt("blockSize"), 0, 0));
         scene.addComponent( c);
+        scene.setList(map.getWalking_matrix());
         setCurrentScene(scene);
 	}
 
