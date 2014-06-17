@@ -27,50 +27,13 @@ public class PacmanComponent extends MovingGameComponent<AbstractPacmanScene> im
     }
 
 
-    public void update(DeltaState delta_state) {
-        updateVector(delta_state, getUVector());
-        if (can_move(delta_state))
-            move(delta_state);
-        super.update(delta_state);
-    }
-
     public boolean can_move(DeltaState delta_state) {
         double x, y;
         x = shape.getX();
         y = shape.getY();
-        double new_x = calculatePosition(x, getUVector().getX(), getSpeedFactor(delta_state));
-        double new_y = calculatePosition(y, getUVector().getY(), getSpeedFactor(delta_state));
-        return getScene().canOccupy((int) new_x, (int) new_y, shape);
-    }
-
-    public void move(DeltaState delta_state){
-        setX(calculatePosition(getX(), getUVector().getX(), getSpeedFactor(delta_state)));
-        setY(calculatePosition(getY(), getUVector().getY(), getSpeedFactor(delta_state)));
-    }
-
-    public double calculatePosition(double position, double uVectorProportion, double speedFactor){
-        return position + uVectorProportion * speedFactor;
-    }
-
-
-    public void updateVector(DeltaState delta_state, UnitVector2D vector) {
-        if (delta_state.isKeyPressed(Key.UP)) {
-            vector.setY(-1);
-            vector.setX(0);
-        }
-        if (delta_state.isKeyPressed(Key.DOWN)) {
-            vector.setY(1);
-            vector.setX(0);
-        }
-        if (delta_state.isKeyPressed(Key.RIGHT)) {
-            vector.setX(1);
-            vector.setY(0);
-        }
-        if (delta_state.isKeyPressed(Key.LEFT)) {
-            vector.setX(-1);
-            vector.setY(0);
-        }
-
+        double new_x = move(x, getUVector().getX(), getSpeedFactor(delta_state));
+        double new_y = move(y, getUVector().getX(), getSpeedFactor(delta_state));
+        return getScene().canOccupy(new_x, new_y, shape);
     }
 
     public void setShape(Circle shape) {

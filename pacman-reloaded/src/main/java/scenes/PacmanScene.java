@@ -10,14 +10,14 @@ import java.util.List;
 public class PacmanScene extends AbstractPacmanScene {
     private List<List<Boolean>> list = new ArrayList<List<Boolean>>();
 
-    public boolean canOccupy(int x, int y, Circle circle) {
+    public boolean canOccupy(double  x, double y, Circle circle) {
         return can_walk(to_b(x), to_b(y)) && can_walk(to_b(x + circle.getDiameter()), to_b(y)) &&
                 can_walk(to_b(x), to_b(y + circle.getDiameter())) &&
                 can_walk(to_b(x + circle.getDiameter()), to_b(y + circle.getDiameter()));
     }
 
-    public int to_b(double x) {
-        return (int) (x / block_size());
+    public int to_b(double coord) {
+        return (int) (coord / block_size());
     }
 
     public int block_size() {
@@ -25,6 +25,7 @@ public class PacmanScene extends AbstractPacmanScene {
     }
 
     public boolean can_walk(int x, int y) {
+
         return getList().get(y).get(x);
     }
 
