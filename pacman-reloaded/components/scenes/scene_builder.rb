@@ -29,7 +29,7 @@ class SceneBuilder
     parser = ColorParser::Parser.new(block_size)
     parser.parse(image)
     position = parser.pacman_position
-    shape = Circle.new ((block_size - 1) / 2), 0, 0
+    shape = Circle.new ((block_size - 3) / 2), 0, 0
     self.pacman = PacmanComponent.new(shape, pacman_image, position[0] * block_size, position[1] * block_size, 1, 0, 200)
     with_component pacman
     self
