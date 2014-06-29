@@ -8,12 +8,22 @@ require_relative '../components/board'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :pacman, :points, :lifes
+  attr_accessor :walkable_matrix, :pacman, :points, :lifes, :foods
 
   def initialize
     super
     self.points = Board.new 35, 0, Color::BLACK
     self.lifes = Board.new 0, 0, Color::BLACK
+  end
+
+  def takeStep(graphics)
+    super graphics
+    Array.new(foods).each do |food|
+      if food.shape.colliding? pacman.shape
+        food.eaten
+        foods.delete food
+      end
+    end
   end
 
   def onSetAsCurrent

@@ -11,6 +11,7 @@ class Board < GameComponent
   def initialize(x, y, color)
     super Label.new(Font.new("verdana", Font::BOLD, 25), color, "0"), x, y
     self.z = 100
+    self.value = 0
   end
 
   def add(new_value)

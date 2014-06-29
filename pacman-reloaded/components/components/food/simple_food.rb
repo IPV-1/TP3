@@ -14,6 +14,7 @@ class SimpleFood < GameComponent
 
   def eaten
     scene.points.add points
+    destroy
   end
 
   def points

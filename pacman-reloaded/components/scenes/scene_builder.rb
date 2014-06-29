@@ -6,7 +6,7 @@ java_import Java::com.uqbar.vainilla.GameComponent
 require_relative './pacman_scene'
 
 class SceneBuilder
-  attr_accessor :background, :walkable_matrix, :components, :config, :block_size, :pacman, :init_lifes
+  attr_accessor :background, :walkable_matrix, :components, :config, :block_size, :pacman, :init_lifes, :foods
 
   def initialize(config)
     self.config = config
@@ -43,7 +43,7 @@ class SceneBuilder
   def with_food(image)
     parser = ColorParser::Parser.new(block_size)
     parser.parse(image)
-    foods = parser.foods
+    self.foods = parser.foods
     with_components foods
     self
   end
@@ -69,6 +69,8 @@ class SceneBuilder
       scene.walkable_matrix = walkable_matrix
     end
     scene.add_components components
+    scene.foods = foods
+    scene.pacman = pacman
     scene
   end
 end
