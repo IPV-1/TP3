@@ -13,7 +13,12 @@ class PacmanScene < GameScene
   end
 
   def can_walk(x, y)
-    walkable_matrix[y][x]
+    row = walkable_matrix[y]
+    if row
+      row[x] == true || row[x].nil?
+    else
+      true
+    end
   end
 
   def can_occupy?(x, y, circle)
