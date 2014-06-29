@@ -30,7 +30,7 @@ module ColorParser
 
 
     def boolean_for(color)
-      color != -324853
+      !([-324853, -301813].include? color)
     end
 
   end
