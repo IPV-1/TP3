@@ -1,14 +1,24 @@
 require 'java'
 java_import Java::com.uqbar.vainilla.GameScene
 java_import Java::extensions.shapes.Circle
+java_import Java::java.awt.Color
 
 require_relative '../components/pacman_component'
+require_relative '../components/board'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :pacman
+  attr_accessor :walkable_matrix, :pacman, :points, :lifes
+
+  def initialize
+    super
+    self.points = Board.new 35, 0, Color::BLACK
+    self.lifes = Board.new 0, 0, Color::BLACK
+  end
 
   def onSetAsCurrent
+    add_component points
+    add_component lifes
     super
   end
 
