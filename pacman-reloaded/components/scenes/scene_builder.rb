@@ -25,6 +25,11 @@ class SceneBuilder
     self
   end
 
+  def with_components(components)
+    components.each { |component| self.with_component component }
+    self
+  end
+
   def with_pacman(image, pacman_image)
     parser = ColorParser::Parser.new(block_size)
     parser.parse(image)
@@ -32,6 +37,14 @@ class SceneBuilder
     shape = Circle.new ((block_size - 1) / 2), 0, 0
     self.pacman = PacmanComponent.new(shape, pacman_image, position[0] * block_size, position[1] * block_size, 1, 0, 150)
     with_component pacman
+    self
+  end
+
+  def with_food(image)
+    parser = ColorParser::Parser.new(block_size)
+    parser.parse(image)
+    foods = parser.foods
+    with_components foods
     self
   end
 

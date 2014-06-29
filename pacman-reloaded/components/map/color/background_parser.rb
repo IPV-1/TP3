@@ -19,7 +19,8 @@ module ColorParser
         -14550261 => Color::BLUE,
         -787701 => Color::BLUE,
         -324638 => Color::BLUE,
-        -277237 => Color::BLUE
+        -277237 => Color::BLUE,
+        -12566464 => Color::BLUE
     }
 
     def create_background(file)

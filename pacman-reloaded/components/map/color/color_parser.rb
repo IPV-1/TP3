@@ -3,6 +3,7 @@ require 'java'
 require_relative './background_parser'
 require_relative './walking_matrix_parser'
 require_relative './pacman_loader'
+require_relative './food_parser'
 
 require_relative '../../resource/resource'
 java_import Java::javax.imageio.ImageIO
@@ -13,6 +14,7 @@ java_import Java::java.awt.Color
 module ColorParser
   class Parser
     include ColorParser::BackgroundParser
+    include ColorParser::FoodParser
     include ColorParser::WalkingMatrixParser
     include ColorParser::PacmanLoader
     attr_accessor :block_size
@@ -26,6 +28,7 @@ module ColorParser
       create_position file
       create_background file
       create_walking_matrix file
+      create_food file
       self.background
     end
 
