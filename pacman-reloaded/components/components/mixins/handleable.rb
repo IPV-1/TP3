@@ -6,19 +6,19 @@ module Handleable
   def update_vector(delta_state, vector)
     old_y = vector.y
     old_x = vector.x
-    if delta_state.key_pressed? Key::UP
+    if delta_state.key_being_hold? Key::UP
       vector.y = -1
       vector.x = 0
     end
-    if delta_state.key_pressed? Key::DOWN
+    if delta_state.key_being_hold? Key::DOWN
       vector.y = 1
       vector.x = 0
     end
-    if delta_state.key_pressed? Key::RIGHT
+    if delta_state.key_being_hold? Key::RIGHT
       vector.x = 1
       vector.y = 0
     end
-    if delta_state.key_pressed? Key::LEFT
+    if delta_state.key_being_hold? Key::LEFT
       vector.x = -1
       vector.y = 0
     end
