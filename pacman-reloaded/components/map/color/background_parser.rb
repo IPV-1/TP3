@@ -15,10 +15,10 @@ module ColorParser
         -324853 => Color::RED,
         -1 => Color::BLUE,
         -301813 => Color::ORANGE,
-        -16046085 => Color::LIGHT_GRAY,
-        -14550261 => Color::BLACK,
-        -787701 => Color::PINK,
-        -324638 => Color::GREEN,
+        -16046085 => Color::BLUE,
+        -14550261 => Color::BLUE,
+        -787701 => Color::BLUE,
+        -324638 => Color::BLUE,
         -277237 => Color::BLUE
     }
 
