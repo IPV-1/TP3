@@ -1,14 +1,17 @@
 require 'java'
-
+require_relative './movers/right_mover'
 require_relative './mixins/handleable'
+require_relative './mixins/appearance_rotable'
 class PacmanComponent < BasicPacmanComponent
   include Handleable
+  include AppearanceRotable
 
   def update(delta_state)
     update_vector delta_state, uVector
     if can_move? delta_state
       move(delta_state)
     end
+    mover.rotare_appearance self
     super
   end
 

@@ -1,5 +1,5 @@
 require 'java'
-
+java_import Java::java.lang.Math
 java_import Java::com.uqbar.vainilla.events.constants.Key
 
 class Mover
@@ -16,6 +16,14 @@ class Mover
         Key::LEFT=> LeftMover
     }
     map[key].new component
+  end
+
+  def rotare_appearance(component)
+    raise 'should be implemented by subclass'
+  end
+
+  def pi
+    Math::PI
   end
 
   def can_move?(delta_state, component)

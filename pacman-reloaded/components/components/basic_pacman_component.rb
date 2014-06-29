@@ -10,6 +10,7 @@ class BasicPacmanComponent < GameComponent
   attr_accessor :shape
   def initialize(shape, appearance, x, y, x_vector, y_vector, speed)
     super appearance, x, y
+    self.original_appearance = appearance
     shape.shapeable = self
     self.shape = shape
     initialize_vector x_vector, y_vector, speed
