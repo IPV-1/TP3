@@ -17,7 +17,7 @@ class Ghost < BasicPacmanComponent
     else
       rotate
       self.count = count + 1
-      if count == 2
+      if count == 3
         self.count = 0
         self.rotation *= -1
       end
@@ -26,40 +26,13 @@ class Ghost < BasicPacmanComponent
 
   def rotate
     #TODO: GOD! This scares
-    if rotation < 0
       if uVector.x == 0
-        if uVector.y > 0
-          uVector.x = 1
-        else
-          uVector.x = -1
-        end
+        uVector.x = uVector.y * rotation
         uVector.y = 0
       else
-        if uVector.x > 0
-          uVector.y = -1
-        else
-          uVector.y = 1
-        end
+        uVector.y = uVector.x * rotation
         uVector.x = 0
       end
-    else
-      if uVector.x == 0
-        if uVector.y > 0
-          uVector.x = -1
-        else
-          uVector.x = 1
-        end
-        uVector.y = 0
-      else
-        if uVector.x > 0
-          uVector.y = 1
-        else
-          uVector.y = -1
-        end
-        uVector.x = 0
-      end
-
-    end
   end
 
 
