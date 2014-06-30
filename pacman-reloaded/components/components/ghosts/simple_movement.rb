@@ -1,7 +1,8 @@
 class SimpleMovement
-  attr_accessor :count, :rotation
+  attr_accessor :count, :rotation, :max_rotations
 
   def initialize
+    self.max_rotations = 3
     self.count = 0
     self.rotation = -1
   end
@@ -20,7 +21,7 @@ class SimpleMovement
       ghost.uVector.x = 0
     end
     self.count = count + 1
-    if count == 3
+    if count == max_rotations
       self.count = 0
       self.rotation *= -1
     end
