@@ -18,6 +18,10 @@ class PacmanScene < GameScene
     self.lifes = Board.new 0, 0, Color::BLACK
   end
 
+  def power_pacman!
+    puts "I've got the power!!"
+  end
+
   def takeStep(graphics)
     super graphics
     if foods.blank?

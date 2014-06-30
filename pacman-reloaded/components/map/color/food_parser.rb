@@ -2,6 +2,7 @@ require 'java'
 
 require 'active_support/concern'
 require_relative '../../../components/components/food/simple_food'
+require_relative '../../../components/components/food/power_food'
 java_import Java::java.awt.Color
 java_import Java::java.awt.image.BufferedImage
 java_import Java::com.uqbar.vainilla.appearances.Sprite
@@ -29,19 +30,33 @@ module ColorParser
       (0...width).each do |column_number|
         pixel = image.getRGB(column_number, row_number)
         if food? pixel
-          food = SimpleFood.new(Circle.new(food_diameter/2, 0, 0), com.uqbar.vainilla.appearances.Circle.new(Color::YELLOW, food_diameter), centre(column_number), centre(row_number))
-          food.points = 10
+          food = food_for pixel, column_number, row_number
           foods << food
         end
       end
     end
 
-    def centre(position)
-      position * block_size + (block_size / 2) - food_diameter / 2
+    def centre(position, diameter)
+      position * block_size + (block_size / 2) - diameter / 2
     end
 
     def food?(pixel)
-      pixel == Color::darkGray.get_rgb
+      [Color::darkGray.get_rgb, Color::black.get_rgb].include? pixel
+    end
+
+    def food_for(pixel, column_number, row_number)
+      if pixel == Color::darkGray.get_rgb
+        shape = Circle.new(food_diameter/2, 0, 0)
+        food = SimpleFood.new(shape, com.uqbar.vainilla.appearances.Circle.new(Color::YELLOW, food_diameter), centre(column_number, shape.diameter), centre(row_number, shape.diameter))
+        food.points = 10
+        return food
+      end
+      if pixel == Color::black.get_rgb
+        shape = Circle.new(food_diameter/2*2/3*2, 0, 0)
+        food = PowerFood.new(shape, com.uqbar.vainilla.appearances.Circle.new(Color::PINK, food_diameter*2/3*2), centre(column_number, shape.diameter), centre(row_number, shape.diameter))
+        food.points = 20
+        return food
+      end
     end
 
     def food_diameter

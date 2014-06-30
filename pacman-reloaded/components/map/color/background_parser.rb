@@ -12,6 +12,7 @@ module ColorParser
       attr_accessor :background
     end
     COLOR_HASH = {
+        -16777216 => Color::BLUE,
         -324853 => Color::RED,
         -1 => Color::BLUE,
         -301813 => Color::ORANGE,
