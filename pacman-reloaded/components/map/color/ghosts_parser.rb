@@ -25,7 +25,7 @@ module ColorParser
         pixel = image.getRGB(column_number, row_number)
         if ghost? pixel
           shape = Circle.new ((block_size - 1) / 2), 0, 0
-          g = Ghost.new(shape, ghost_image_for(pixel), column_number * block_size, row_number * block_size, 0, initial_direction(pixel), 150)
+          g = Ghost.new(shape, ghost_image_for(pixel), column_number * block_size, row_number * block_size, 0, initial_direction(pixel), 170)
           g.mover.max_rotations = max_rotations(pixel)
           ghosts << g
         end
