@@ -14,11 +14,15 @@ public abstract class Game {
 	// ****************************************************************
 
 	public Game() {
-		this.initializeResources();
-		this.setCurrentScene(new GameScene());
 
-		this.setUpScenes();
 	}
+
+    public void init(){
+        this.initializeResources();
+        this.setCurrentScene(new GameScene());
+
+        this.setUpScenes();
+    }
 
 	// ****************************************************************
 	// ** INITIALIZATIONS

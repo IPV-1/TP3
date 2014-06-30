@@ -8,7 +8,6 @@ hs_err_pid*
 /bin
 ##########
 ## Linux ##
-.*
 !.gitignore
 *~
 
@@ -86,14 +85,11 @@ local.properties
 
 # PDT-specific
 .buildpath
-
+**/.jbundler
+**/.bundle
 arkanoid/src/main/security/keystore.jks
 
 # intelliJ IDEA
 **/*.iml
 **/*.idea/
-
 pacman-reloaded/src/main/security/keystore.jks
-
-
-

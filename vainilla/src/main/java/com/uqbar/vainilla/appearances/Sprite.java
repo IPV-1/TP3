@@ -175,7 +175,7 @@ public class Sprite extends SimpleAppearance<Sprite> {
 	// ** ACCESSORS
 	// ****************************************************************
 
-	protected BufferedImage getImage() {
+	public BufferedImage getImage() {
 		return this.image;
 	}
 
