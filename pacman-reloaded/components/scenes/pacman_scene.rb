@@ -6,6 +6,7 @@ java_import Java::java.awt.Color
 require_relative '../components/pacman_component'
 require_relative '../components/board'
 require_relative './lose_scene'
+require_relative './win_scene'
 
 
 class PacmanScene < GameScene
@@ -19,6 +20,9 @@ class PacmanScene < GameScene
 
   def takeStep(graphics)
     super graphics
+    if foods.blank?
+      game.set_current_scene WinScene.new
+    end
     Array.new(foods).each do |food|
       if food.shape.colliding? pacman.shape
         food.eaten
