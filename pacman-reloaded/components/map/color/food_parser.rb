@@ -29,7 +29,7 @@ module ColorParser
       (0...width).each do |column_number|
         pixel = image.getRGB(column_number, row_number)
         if food? pixel
-          food = SimpleFood.new(Circle.new(food_ratio, 0, 0), com.uqbar.vainilla.appearances.Circle.new(Color::YELLOW, food_ratio), centre(column_number), centre(row_number))
+          food = SimpleFood.new(Circle.new(food_diameter/2, 0, 0), com.uqbar.vainilla.appearances.Circle.new(Color::YELLOW, food_diameter), centre(column_number), centre(row_number))
           food.points = 10
           foods << food
         end
@@ -37,14 +37,14 @@ module ColorParser
     end
 
     def centre(position)
-      position * block_size + (block_size / 2) - food_ratio / 2
+      position * block_size + (block_size / 2) - food_diameter / 2
     end
 
     def food?(pixel)
       pixel == Color::darkGray.get_rgb
     end
 
-    def food_ratio
+    def food_diameter
       block_size / 2
     end
 
