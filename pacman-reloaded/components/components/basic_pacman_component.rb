@@ -16,10 +16,29 @@ class BasicPacmanComponent < GameComponent
   end
 
   def can_move?(delta_state)
-    x, y = shape.x, shape.y
-    new_x = calculate_position x, uVector.x, speed_factor(delta_state)
-    new_y = calculate_position y, uVector.y, speed_factor(delta_state)
-    scene.can_occupy?(new_x, new_y, shape)
+    can_move_to? uVector.x, uVector.y, delta_state
+  end
+
+  def can_move_to_left?(delta_state)
+    can_move_to? -1, 0, delta_state
+  end
+
+  def can_move_to_right?(delta_state)
+    can_move_to? 1, 0, delta_state
+  end
+
+  def can_move_to_above?(delta_state)
+    can_move_to? 0, -1, delta_state
+  end
+
+  def can_move_to_below?(delta_state)
+    can_move_to? 0, 1, delta_state
+  end
+
+  def can_move_to?(x_v, y_v, delta_state)
+    x = calculate_position shape.x, x_v, speed_factor(delta_state)
+    y = calculate_position shape.y, y_v, speed_factor(delta_state)
+    scene.can_occupy?(x, y, shape)
   end
 
   def update(delta_state)
