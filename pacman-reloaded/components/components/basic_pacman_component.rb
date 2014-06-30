@@ -15,6 +15,13 @@ class BasicPacmanComponent < GameComponent
     initialize_vector x_vector, y_vector, speed
   end
 
+  def can_move?(delta_state)
+    x, y = shape.x, shape.y
+    new_x = calculate_position x, uVector.x, speed_factor(delta_state)
+    new_y = calculate_position y, uVector.y, speed_factor(delta_state)
+    scene.can_occupy?(new_x, new_y, shape)
+  end
+
   def update(delta_state)
     fix_position
     super
