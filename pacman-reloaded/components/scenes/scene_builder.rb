@@ -14,6 +14,14 @@ class SceneBuilder
     self.block_size = config.get_int('blockSize')
   end
 
+  def from_image(image_file)
+    with_background(image_file)
+    with_walkable_matrix(image_file)
+    with_pacman image_file, Resource.image(config['pacmanImg'])
+    with_food(image_file)
+    with_ghosts(image_file)
+  end
+
   def with_background(image)
     sprite = ColorParser::Parser.new(block_size).parse image
     self.background = GameComponent.new sprite, 0, 0
