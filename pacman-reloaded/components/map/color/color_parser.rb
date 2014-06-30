@@ -4,6 +4,7 @@ require_relative './background_parser'
 require_relative './walking_matrix_parser'
 require_relative './pacman_loader'
 require_relative './food_parser'
+require_relative './ghosts_parser'
 
 require_relative '../../resource/resource'
 java_import Java::javax.imageio.ImageIO
@@ -17,6 +18,7 @@ module ColorParser
     include ColorParser::FoodParser
     include ColorParser::WalkingMatrixParser
     include ColorParser::PacmanLoader
+    include ColorParser::GhostsParser
     attr_accessor :block_size
 
     def initialize(block_size)
@@ -29,6 +31,7 @@ module ColorParser
       create_background file
       create_walking_matrix file
       create_food file
+      create_ghosts file
       self.background
     end
 

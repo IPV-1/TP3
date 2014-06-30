@@ -6,29 +6,18 @@ class PacmanComponent < BasicPacmanComponent
   include Handleable
   include AppearanceRotable
 
+  def initialize(s, a, x, y, x_v, y_v, speed)
+    super
+    self.original_appearance = appearance
+  end
+
   def update(delta_state)
-    fix_position
     update_vector delta_state, uVector
     if can_move? delta_state
       move(delta_state)
     end
     mover.rotare_appearance self
     super
-  end
-
-  def fix_position
-    if x < 0
-      self.x = scene.game.display_size.width - 1
-    end
-    if x > scene.game.display_size.width
-      self.x = 0
-    end
-    if y < 0
-      self.y = scene.game.display_size.height - 1
-    end
-    if y > scene.game.display_size.height
-      self.y = 0
-    end
   end
 
   def can_move?(delta_state)

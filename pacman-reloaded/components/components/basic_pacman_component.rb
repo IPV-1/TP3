@@ -10,9 +10,28 @@ class BasicPacmanComponent < GameComponent
   attr_accessor :shape
   def initialize(shape, appearance, x, y, x_vector, y_vector, speed)
     super appearance, x, y
-    self.original_appearance = appearance
     shape.shapeable = self
     self.shape = shape
     initialize_vector x_vector, y_vector, speed
+  end
+
+  def update(delta_state)
+    fix_position
+    super
+  end
+
+  def fix_position
+    if x < 0
+      self.x = scene.game.display_size.width - 1
+    end
+    if x > scene.game.display_size.width
+      self.x = 0
+    end
+    if y < 0
+      self.y = scene.game.display_size.height - 1
+    end
+    if y > scene.game.display_size.height
+      self.y = 0
+    end
   end
 end

@@ -6,7 +6,7 @@ java_import Java::com.uqbar.vainilla.GameComponent
 require_relative './pacman_scene'
 
 class SceneBuilder
-  attr_accessor :background, :walkable_matrix, :components, :config, :block_size, :pacman, :init_lifes, :foods
+  attr_accessor :ghosts, :background, :walkable_matrix, :components, :config, :block_size, :pacman, :init_lifes, :foods
 
   def initialize(config)
     self.config = config
@@ -40,6 +40,14 @@ class SceneBuilder
     self
   end
 
+  def with_ghosts(file)
+    parser = ColorParser::Parser.new(block_size)
+    parser.parse(file)
+    self.ghosts = parser.ghosts
+    with_components ghosts
+    self
+  end
+
   def with_food(image)
     parser = ColorParser::Parser.new(block_size)
     parser.parse(image)
@@ -70,6 +78,7 @@ class SceneBuilder
     end
     scene.add_components components
     scene.foods = foods
+    scene.ghosts = ghosts
     scene.pacman = pacman
     scene
   end

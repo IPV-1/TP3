@@ -8,7 +8,7 @@ require_relative '../components/board'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :pacman, :points, :lifes, :foods
+  attr_accessor :walkable_matrix, :pacman, :points, :lifes, :foods, :ghosts
 
   def initialize
     super
