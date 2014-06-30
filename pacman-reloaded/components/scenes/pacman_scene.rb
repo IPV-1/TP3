@@ -9,7 +9,7 @@ require_relative './lose_scene'
 
 
 class PacmanScene < GameScene
-  attr_accessor :walkable_matrix, :pacman, :points, :lifes, :foods, :ghosts
+  attr_accessor :walkable_matrix, :pacman, :points, :lifes, :foods, :ghosts, :init_position
 
   def initialize
     super
@@ -28,8 +28,14 @@ class PacmanScene < GameScene
     Array.new(ghosts).each do |ghost|
       pacman_shape = pacman.shape
       if ghost.shape.colliding? pacman_shape
-        pacman.destroy
-        self.pacman = nil
+        if lifes.value > 0
+          self.lifes.value = lifes.value - 1
+          pacman.x = init_position[0]
+          pacman.y = init_position[1]
+        else
+          pacman.destroy
+          self.pacman = nil
+        end
         break
       end
     end
@@ -41,6 +47,9 @@ class PacmanScene < GameScene
   def onSetAsCurrent
     add_component points
     add_component lifes
+    self.init_position = []
+    init_position[0] = pacman.x
+    init_position[1] = pacman.y
     super
   end
 
