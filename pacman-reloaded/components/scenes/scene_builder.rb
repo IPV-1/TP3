@@ -15,16 +15,17 @@ class SceneBuilder
   end
 
   def from_image(image_file)
-    with_background(image_file)
-    with_walkable_matrix(image_file)
-    with_pacman image_file, Resource.image(config['pacmanImg'])
-    with_food(image_file)
-    with_ghosts(image_file)
+    parser = ColorParser::Parser.new(block_size)
+    parser.parse image_file
+    with_background(parser)
+    with_walkable_matrix(parser)
+    with_pacman parser, Resource.image(config['pacmanImg'])
+    with_food(parser)
+    with_ghosts(parser)
   end
 
-  def with_background(image)
-    sprite = ColorParser::Parser.new(block_size).parse image
-    self.background = GameComponent.new sprite, 0, 0
+  def with_background(parser)
+    self.background = GameComponent.new parser.background, 0, 0
     self
   end
 
@@ -38,9 +39,7 @@ class SceneBuilder
     self
   end
 
-  def with_pacman(image, pacman_image)
-    parser = ColorParser::Parser.new(block_size)
-    parser.parse(image)
+  def with_pacman(parser, pacman_image)
     position = parser.pacman_position
     shape = Circle.new ((block_size - 1) / 2), 0, 0
     self.pacman = PacmanComponent.new(shape, pacman_image, position[0] * block_size, position[1] * block_size, 1, 0, 150)
@@ -48,17 +47,13 @@ class SceneBuilder
     self
   end
 
-  def with_ghosts(file)
-    parser = ColorParser::Parser.new(block_size)
-    parser.parse(file)
+  def with_ghosts(parser)
     self.ghosts = parser.ghosts
     with_components ghosts
     self
   end
 
-  def with_food(image)
-    parser = ColorParser::Parser.new(block_size)
-    parser.parse(image)
+  def with_food(parser)
     self.foods = parser.foods
     with_components foods
     self
@@ -68,9 +63,7 @@ class SceneBuilder
     self.init_lifes = init_lifes
   end
 
-  def with_walkable_matrix(image)
-    parser = ColorParser::Parser.new(block_size)
-    parser.parse(image)
+  def with_walkable_matrix(parser)
     self.walkable_matrix = parser.walking_matrix
     self
   end
