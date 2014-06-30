@@ -5,6 +5,7 @@ java_import Java::java.awt.Color
 
 require_relative '../components/pacman_component'
 require_relative '../components/board'
+require_relative './lose_scene'
 
 
 class PacmanScene < GameScene
@@ -23,6 +24,17 @@ class PacmanScene < GameScene
         food.eaten
         foods.delete food
       end
+    end
+    Array.new(ghosts).each do |ghost|
+      pacman_shape = pacman.shape
+      if ghost.shape.colliding? pacman_shape
+        pacman.destroy
+        self.pacman = nil
+        break
+      end
+    end
+    unless pacman
+      game.set_current_scene LoseScene.new
     end
   end
 
