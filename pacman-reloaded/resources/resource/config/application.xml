@@ -7,4 +7,6 @@
     <entry key="blockSize">30</entry>
     <entry key="pacmanImg">pacman-min.png</entry>
     <entry key="pacmanPower">pacman-power-min.png</entry>
+    <entry key="GameOver">Game_Over2.png</entry>
+    <entry key="win">win.png</entry>
 </properties>

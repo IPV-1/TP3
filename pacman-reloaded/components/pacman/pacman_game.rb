@@ -24,6 +24,8 @@ class PacmanGame < Game
   def initialize_config_resources
     resources.load_sprite('map')
     resources.load_sprite('pacmanImg')
+    resources.load_sprite('GameOver')
+    resources.load_sprite('win')
     self.display_size = Dimension.new resources.get_int('screenWidth'), resources.get_int('screenHeight')
   end
 

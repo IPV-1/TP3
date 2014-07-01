@@ -7,7 +7,7 @@ java_import Java::com.uqbar.vainilla.GameComponent
 class WinScene < GameScene
 
   def onSetAsCurrent
-    self.add_component GameComponent.new Resource.image('win.png'), 0, 0
+    self.add_component GameComponent.new game.resources['win'], 0, 0
   end
 
 end
