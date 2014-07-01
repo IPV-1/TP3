@@ -4,3 +4,26 @@ Use jruby and java.
 
 that's really good!
 
+Requirements:
+ - Java
+ - RVM
+ - Maven
+ - Jruby
+
+Install:
+
+$ git clone git@github.com:IPV-1/TP3.git
+
+$ cd TP3/vainilla
+
+$ mvn install
+
+$ cd .../pacman-reloaded
+
+$ rvm current
+
+$ bundle install
+
+$ cd components/launcher
+
+$ jruby -J-cp ../../../vainilla/target/vainilla-pacman-0.0.4.jar  launcher.rb
