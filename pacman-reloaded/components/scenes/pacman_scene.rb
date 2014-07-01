@@ -19,7 +19,7 @@ class PacmanScene < GameScene
   end
 
   def power_pacman!
-    puts "I've got the power!!"
+    pacman.power!
   end
 
   def takeStep(graphics)
@@ -36,10 +36,13 @@ class PacmanScene < GameScene
     Array.new(ghosts).each do |ghost|
       pacman_shape = pacman.shape
       if ghost.shape.colliding? pacman_shape
+        inital_life = lifes.value
+        pacman.collides_with ghost, lifes
         if lifes.value > 0
-          self.lifes.value = lifes.value - 1
-          pacman.x = init_position[0]
-          pacman.y = init_position[1]
+          if inital_life != lifes.value
+            pacman.x = init_position[0]
+            pacman.y = init_position[1]
+          end
         else
           pacman.destroy
           self.pacman = nil
