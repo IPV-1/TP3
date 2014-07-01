@@ -19,7 +19,7 @@ class SceneBuilder
     parser.parse image_file
     with_background(parser)
     with_walkable_matrix(parser)
-    with_pacman parser, Resource.image(config['pacmanImg'])
+    with_pacman parser, game.resources['pacman-img']
     with_food(parser)
     with_ghosts(parser)
   end
