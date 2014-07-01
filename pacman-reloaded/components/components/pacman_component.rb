@@ -7,16 +7,24 @@ require_relative './pacman_states/power_state'
 class PacmanComponent < BasicPacmanComponent
   include Handleable
   include AppearanceRotable
-  attr_accessor :state
+  attr_accessor :state, :power_appearance, :normal_appearance
 
-  def initialize(s, a, x, y, x_v, y_v, speed)
-    super
-    self.state = SimpleState.new
+  def initialize(shape, appearance, power_appearance,x, y, x_v, y_v, speed)
+    super shape, appearance,x, y, x_v, y_v, speed
+    self.power_appearance = power_appearance
+    self.normal_appearance = appearance
+    self.simple_state!
     self.original_appearance = appearance
   end
 
+  def simple_state!
+    self.state = SimpleState.new normal_appearance
+    self.original_appearance = state.appearance
+  end
+
   def power!
-    self.state = PowerState.new 5
+    self.state = PowerState.new 5, power_appearance
+    self.original_appearance = state.appearance
   end
 
   def update(delta_state)

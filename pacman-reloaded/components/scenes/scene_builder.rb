@@ -19,7 +19,7 @@ class SceneBuilder
     parser.parse image_file
     with_background(parser)
     with_walkable_matrix(parser)
-    with_pacman parser, Resource.image(config['pacmanImg'])
+    with_pacman parser, Resource.image(config['pacmanImg']), Resource.image(config['pacmanPower'])
     with_food(parser)
     with_ghosts(parser)
   end
@@ -39,10 +39,10 @@ class SceneBuilder
     self
   end
 
-  def with_pacman(parser, pacman_image)
+  def with_pacman(parser, pacman_image, power_image)
     position = parser.pacman_position
     shape = Circle.new ((block_size - 1) / 2), 0, 0
-    self.pacman = PacmanComponent.new(shape, pacman_image, position[0] * block_size, position[1] * block_size, 1, 0, 150)
+    self.pacman = PacmanComponent.new(shape, pacman_image, power_image, position[0] * block_size, position[1] * block_size, 1, 0, 150)
     with_component pacman
     self
   end

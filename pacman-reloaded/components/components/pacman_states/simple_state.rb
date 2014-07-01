@@ -1,4 +1,9 @@
 class SimpleState
+  attr_accessor :appearance
+
+  def initialize(appearance)
+    self.appearance = appearance
+  end
 
   def update(pacman, delta_state)
     #No op
